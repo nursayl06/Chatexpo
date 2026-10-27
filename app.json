@@ -1,0 +1,65 @@
+{
+  "expo": {
+    "name": "ChatExpo",
+    "description": "Real-time mobile chat with offline mode",
+    "slug": "chatexpo",
+    "scheme": "chatexpo",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/chat-expo-app-icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.chatexpo.app"
+    },
+    "android": {
+      "package": "com.chatexpo.app",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "softwareKeyboardLayoutMode": "resize"
+    },
+    "web": {
+      "favicon": "./assets/chat-expo-app-favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/chat-expo-app-icon.png",
+          "imageWidth": 160,
+          "backgroundColor": "#f4f2f2"
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "ChatExpo needs access to your photos so you can send them in the chat.",
+          "cameraPermission": "ChatExpo needs the camera so you can take a photo and send it in the chat.",
+          "microphonePermission": false
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#2196f3",
+          "defaultChannel": "messages"
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

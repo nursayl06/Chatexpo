@@ -1,0 +1,44 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: chat-server
+  datasource:
+    # H2 in file mode: no installation needed, data survives restarts.
+    # To use PostgreSQL instead, run with --spring.profiles.active=postgres
+    url: jdbc:h2:file:./data/chat;AUTO_SERVER=TRUE
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+app:
+  jwt:
+    # Dev-only default. Set JWT_SECRET (base64, 32+ bytes) in any real environment.
+    secret: ${JWT_SECRET:bJtqA7m6j/jPF53USEZsmYndbZx5tVLhT9Uj9opNQYaKUjPjiXMgIhNlEVJjkVL5}
+    access-ttl: 15m
+    refresh-ttl: 30d
+  uploads:
+    dir: ./uploads
+  messages:
+    page-size: 30
+
+---
+spring:
+  config:
+    activate:
+      on-profile: postgres
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/chat}
+    username: ${DB_USER:chat}
+    password: ${DB_PASSWORD:chat}
